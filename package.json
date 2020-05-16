@@ -8,6 +8,7 @@
     "build": "rimraf ./dist && parcel build ./src/index.html"
   },
   "dependencies": {
+    "postcss-modules": "^2.0.0",
     "@hot-loader/react-dom": "^16.13.0",
     "core-js": "^3.6.5",
     "react": "^16.13.1",
