@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Circle from '../Circle';
 import config from '../../../tailwind.config';
 import App from '../../contexts/App';
-import { range } from '../../utils/Enemerable';
+import { range } from '../../utils/Enumerable';
 
 const StyleWrapper = styled.div`
   margin-top: 145px;
