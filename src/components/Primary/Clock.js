@@ -25,7 +25,7 @@ const StyledWrapper = styled.div`
     &:active {
       transform: scale(0.95);
     }
-    & ::after {
+    &::after {
       content: '';
       bottom: 8px;
       right: -8px;
