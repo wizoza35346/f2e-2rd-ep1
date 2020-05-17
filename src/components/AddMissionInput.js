@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import styled from 'styled-components';
 import config from '../../tailwind.config';
 
-const AddMission = styled.form`
+const StyleWrapper = styled.form`
   position: relative;
   width: 445px;
   height: 56px;
@@ -37,10 +37,10 @@ const AddMission = styled.form`
 
 function AddMissionInput({ newMission, handleMissionChanges, handleMissionAdd }) {
   return (
-    <AddMission onSubmit={(e) => handleMissionAdd(e, newMission)} color={config.theme.colors.primary}>
+    <StyleWrapper onSubmit={(e) => handleMissionAdd(e, newMission)} color={config.theme.colors.primary}>
       <input type="text" placeholder="add a new mission..." value={newMission} onChange={handleMissionChanges} />
       <span className="material-icons m-4 text-primary bg-white select-none">add</span>
-    </AddMission>
+    </StyleWrapper>
   );
 }
 
