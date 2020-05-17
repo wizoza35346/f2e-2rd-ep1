@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
 function Secondary(props) {
@@ -25,4 +25,4 @@ function Secondary(props) {
   );
 }
 
-export default Secondary;
+export default memo(Secondary);

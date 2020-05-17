@@ -4,7 +4,7 @@ export default [
     uuid: uuidv4(),
     title: 'the first thing',
     status: 'N',
-    repeat: 0,
+    repeat: 5,
     leftSeconds: 1500,
   },
   {

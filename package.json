@@ -8,20 +8,25 @@
     "build": "rimraf ./dist && parcel build ./src/index.html"
   },
   "dependencies": {
-    "postcss-modules": "^2.0.0",
     "@hot-loader/react-dom": "^16.13.0",
     "core-js": "^3.6.5",
+    "postcss-modules": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.1.0",
+    "tailwind.macro": "^0.5.10",
     "tailwindcss": "^1.4.6",
+    "twin.macro": "^1.0.0",
     "uuid": "^8.0.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
     "@fullhuman/postcss-purgecss": "^2.2.0",
     "autoprefixer": "^9.7.6",
+    "babel-plugin-macros": "^2.8.0",
     "cssnano": "^4.1.10",
     "parcel-plugin-static-files-copy": "^2.3.1",
     "rimraf": "^3.0.2"
@@ -36,8 +41,8 @@
   "staticFiles": {
     "staticPath": [
       {
-        "staticPath": "public/material-design-icons",
-        "staticOutDir": "material-design-icons"
+        "staticPath": "public",
+        "staticOutDir": "/"
       }
     ]
   }

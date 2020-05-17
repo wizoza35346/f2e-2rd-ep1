@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
+import config from '../../tailwind.config';
 
-const AddMission = styled.div`
+const AddMission = styled.form`
   position: relative;
   width: 445px;
   height: 56px;
@@ -9,14 +10,20 @@ const AddMission = styled.div`
   > input {
     width: 100%;
     padding: 1rem;
-    /* color: #ff4384; */
     font-weight: bold;
+    color: ${(props) => props.color};
     text-transform: uppercase;
+    transition: outline-color 500ms ease;
+    outline-color: transparent;
+
+    &:focus {
+      outline-color: ${(props) => props.color};
+    }
 
     &::placeholder {
-      /* color: #ff4384; */
       font-style: italic;
       font-weight: bold;
+      color: ${(props) => props.color};
       text-transform: uppercase;
     }
 
@@ -28,19 +35,13 @@ const AddMission = styled.div`
   }
 `;
 
-function AddMissionInput({ value, onChange }) {
+function AddMissionInput({ newMission, handleMissionChanges, handleMissionAdd }) {
   return (
-    <AddMission>
-      <input
-        type="text"
-        className="text-primary placeholder-primary p-4"
-        placeholder="add a new mission..."
-        value={value}
-        onChange={onChange}
-      />
-      <span className="material-icons m-4 text-primary bg-white">add</span>
+    <AddMission onSubmit={(e) => handleMissionAdd(e, newMission)} color={config.theme.colors.primary}>
+      <input type="text" placeholder="add a new mission..." value={newMission} onChange={handleMissionChanges} />
+      <span className="material-icons m-4 text-primary bg-white select-none">add</span>
     </AddMission>
   );
 }
 
-export default AddMissionInput;
+export default memo(AddMissionInput);
