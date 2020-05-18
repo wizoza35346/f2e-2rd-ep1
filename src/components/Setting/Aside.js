@@ -69,7 +69,7 @@ function Aside({ currentCountDown, handleTomatoState }) {
         {routes.map((r) => (
           <StyleWrapper.NavItem key={r.pathName} to={r.pathName}>
             <span className="material-icons text-4xl mr-2">{r.icon}</span>
-            <span className="align-top uppercase">{r.title}</span>
+            <span className="align-top uppercase">{r?.title}</span>
           </StyleWrapper.NavItem>
         ))}
       </nav>
@@ -82,7 +82,7 @@ function Aside({ currentCountDown, handleTomatoState }) {
         <p className="text-primary text-6xl font-bold" style={{ lineHeight: '75px' }}>
           25:00
         </p>
-        <p className="leading-none text-secondary font-bold uppercase mb-6">{currentCountDown.title}</p>
+        <p className="leading-none text-secondary font-bold uppercase mb-6">{currentCountDown?.title}</p>
       </StyleWrapper.Footer>
     </StyleWrapper>
   );

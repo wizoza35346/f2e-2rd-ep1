@@ -21,8 +21,7 @@ StyleWrapper.Time = styled.p.attrs({
   line-height: 206px;
 `;
 
-function CurrentItem() {
-  const { currentCountDown } = useContext(App);
+function CurrentItem({ currentCountDown }) {
   return (
     <StyleWrapper>
       <div className="flex">
@@ -30,7 +29,7 @@ function CurrentItem() {
         <div>
           <StyleWrapper.Title>{currentCountDown?.title}</StyleWrapper.Title>
           <div className="leading-3">
-            {range(1, currentCountDown.repeat).map((r) => (
+            {range(1, currentCountDown?.repeat).map((r) => (
               <Circle key={r} fillBg color={config.theme.colors.secondary} className="w-3 h-3 mr-2" />
             ))}
 

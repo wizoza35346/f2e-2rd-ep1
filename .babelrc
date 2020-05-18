@@ -1,3 +1,5 @@
 {
-  "plugins": ["macros", "@babel/plugin-syntax-object-rest-spread"]
+  "plugins": ["react-hot-loader/babel",
+    "macros", "@babel/plugin-syntax-object-rest-spread"
+  ]
 }

@@ -10,7 +10,7 @@ import { Transition, SwitchTransition } from 'react-transition-group';
 // Styled Components
 // https://dev.to/terrierscript/styled-component--react-transition-group--very-simple-transition-jja
 
-const appearDuration = 300;
+const appearDuration = 150;
 
 export const TransitionSwitch = styled.div`
   transition: opacity ${(props) => props.timeout}ms;

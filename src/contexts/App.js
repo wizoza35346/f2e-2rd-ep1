@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+
 import data from '../api/Data';
 
-const App = React.createContext();
-export const AppWrapper = (Component) => (props) => {
+const App = React.createContext({});
+export const AppWrapper = (props) => {
   const [newMission, setNewMission] = useState('');
   const handleMissionChanges = useCallback((e) => {
     setNewMission(e.target.value);
@@ -59,7 +60,8 @@ export const AppWrapper = (Component) => (props) => {
         handleCurrentCountDownChanges,
       }}
     >
-      <Component {...props}></Component>
+      {/* <Component {...props}></Component> */}
+      {props.children}
     </App.Provider>
   );
 };

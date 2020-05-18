@@ -6,6 +6,7 @@ import Clock from './Clock';
 import App from '../../contexts/App';
 
 function Primary() {
+  const context = useContext(App);
   const {
     newMission,
     handleMissionChanges,
@@ -14,7 +15,8 @@ function Primary() {
     todoList,
     currentCountDown,
     handleCurrentCountDownChanges,
-  } = useContext(App);
+  } = context;
+  console.log(context);
 
   return (
     <div className="w-primary h-full flex-grow flex-shrink-0 bg-primary-100 flex justify-end items-center">
@@ -24,7 +26,7 @@ function Primary() {
           handleMissionChanges={handleMissionChanges}
           handleMissionAdd={handleMissionAdd}
         />
-        <CurrentItem />
+        <CurrentItem currentCountDown={currentCountDown} />
         <TodoList
           todoList={todoList}
           currentCountDown={currentCountDown}

@@ -38,7 +38,7 @@ const StyleWrapper = styled.form`
 function AddMissionInput({ newMission, handleMissionChanges, handleMissionAdd }) {
   return (
     <StyleWrapper onSubmit={(e) => handleMissionAdd(e, newMission)} color={config.theme.colors.primary}>
-      <input type="text" placeholder="add a new mission..." value={newMission} onChange={handleMissionChanges} />
+      <input type="text" placeholder="add a new mission..." value={newMission || ''} onChange={handleMissionChanges} />
       <span className="material-icons m-4 text-primary bg-white select-none">add</span>
     </StyleWrapper>
   );
