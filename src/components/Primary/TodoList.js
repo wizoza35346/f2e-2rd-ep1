@@ -43,7 +43,7 @@ function TodoList({ todoList, currentCountDown, handleCurrentCountDownChanges })
             )
         )}
       <footer className="text-right">
-        <Link to="/Function" className="text-primary font-bold uppercase select-none">
+        <Link to="/Setting" className="text-primary font-bold uppercase select-none">
           more
         </Link>
       </footer>

@@ -39,7 +39,9 @@ export const AppWrapper = (Component) => (props) => {
     [currentCountDown, todoList]
   );
 
-  const handleTomatoState = useCallback(() => {}, []);
+  const handleTomatoState = useCallback(() => {
+    console.log('state changes');
+  }, []);
 
   useEffect(() => {
     setTodoList(data);

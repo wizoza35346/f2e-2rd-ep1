@@ -1,0 +1,17 @@
+[
+  {
+    "pathName": "/Setting",
+    "icon": "format_list_bulleted",
+    "title": "to-do list"
+  },
+  {
+    "pathName": "/Setting/Analytics",
+    "icon": "poll",
+    "title": "analytics"
+  },
+  {
+    "pathName": "/Setting/Ringtones",
+    "icon": "library_music",
+    "title": "ringtones"
+  }
+]

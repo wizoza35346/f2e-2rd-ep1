@@ -1,31 +1,45 @@
-import React, { useState, useEffect, useRef, lazy, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { hot } from 'react-hot-loader';
 
 import withProvider from './contexts';
 
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, useLocation } from 'react-router-dom';
 import Primary from './components/Primary/';
 import Secondary from './components/Secondary';
+
+import Setting from './components/Setting/';
+
+import { Transition, SwitchTransition } from 'react-transition-group';
+import FadeSwitch from './components/FadeSwitch';
 
 function App() {
   return (
     <Suspense fallback={<div>Component is Loading...</div>}>
       <Router>
-        {/* <Switch> */}
-        <main className="flex h-screen relative">
-          <Primary />
-          <Secondary />
-        </main>
-        <Route exact path="/Function">
-          <Layout />
-        </Route>
-        {/* </Switch> */}
+        <Main />
+        <SettingWrapper />
+        {/* <FadeSwitch mode="in-out">
+          <Route path="/Setting" component={Setting} />
+        </FadeSwitch> */}
       </Router>
     </Suspense>
   );
 }
 
-function Layout() {
-  return <h2>About</h2>;
+function Main() {
+  return (
+    <main className="flex h-screen relative">
+      <Primary />
+      <Secondary />
+    </main>
+  );
 }
+
+function SettingWrapper() {
+  const location = useLocation();
+  const show = location.pathname.toLowerCase().match(/setting/);
+  console.log(location, show);
+  return show && <Setting />;
+}
+
 export default hot(module)(withProvider(App));
