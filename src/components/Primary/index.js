@@ -1,9 +1,10 @@
 import React, { memo, useContext } from 'react';
+import App from '../../contexts/App';
 import AddMissionInput from '../AddMissionInput';
 import CurrentItem from './CurrentItem';
-import TodoList from './TodoList';
+import TodoList from '../TodoList';
 import Clock from './Clock';
-import App from '../../contexts/App';
+import { Link } from 'react-router-dom';
 
 function Primary() {
   const context = useContext(App);
@@ -27,11 +28,19 @@ function Primary() {
           handleMissionAdd={handleMissionAdd}
         />
         <CurrentItem currentCountDown={currentCountDown} />
-        <TodoList
-          todoList={todoList}
-          currentCountDown={currentCountDown}
-          handleCurrentCountDownChanges={handleCurrentCountDownChanges}
-        />
+        <div style={{ width: '445px', marginTop: '108px' }}>
+          <TodoList
+            todoList={todoList}
+            currentCountDown={currentCountDown}
+            handleCurrentCountDownChanges={handleCurrentCountDownChanges}
+            maxLength={3}
+          />
+          <footer className="text-right">
+            <Link to="/Setting" className="text-primary font-bold uppercase select-none">
+              more
+            </Link>
+          </footer>
+        </div>
         <Clock handleTomatoState={handleTomatoState} />
       </div>
     </div>

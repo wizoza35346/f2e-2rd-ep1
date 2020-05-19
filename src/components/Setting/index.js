@@ -1,18 +1,23 @@
-import React, { memo, useContext } from 'react';
+import React, { memo, useContext, useEffect, useState, useCallback } from 'react';
+import { Route, useLocation, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import config from '../../../tailwind.config';
+import { Transition } from 'react-transition-group';
+
 import App from '../../contexts/App';
+import config from '../../../tailwind.config';
 
 import Aside from './Aside';
 import FadeSwitch from '../FadeSwitch';
-import { Route, useRouteMatch, Link, useLocation } from 'react-router-dom';
+import Todo from './Todo';
+import Ringtones from './Ringtones';
+import Analytics from './Analytics';
 
 const StyleWrapper = styled.div.attrs({
   className: 'absolute inset-0 z-50 flex justify-center items-center',
 })`
   background-color: ${(props) => props.bgColor};
   transition: opacity ${(props) => props.timeout}ms ease-in;
-  opacity: ${(props) => (props.state !== 'entered' ? 0 : 1)};
+  opacity: ${(props) => (/enter/.test(props.state) ? 1 : 0)};
 `;
 
 StyleWrapper.Container = styled.div.attrs({
@@ -23,7 +28,7 @@ StyleWrapper.Container = styled.div.attrs({
 
 StyleWrapper.Main = styled.main`
   margin-left: 125px;
-  width: 454px;
+  width: 445px;
 `;
 
 function Setting({ state, timeout, handleClose }) {
@@ -33,11 +38,11 @@ function Setting({ state, timeout, handleClose }) {
     <StyleWrapper state={state} timeout={timeout} bgColor={config.theme.colors.secondary}>
       <StyleWrapper.Container width={config.theme.screens.xl}>
         <Aside currentCountDown={currentCountDown} handleTomatoState={handleTomatoState} />
-        <StyleWrapper.Main className="flex">
+        <StyleWrapper.Main>
           <FadeSwitch>
-            <Route exact path={`/Setting`} component={() => <div>Setting</div>} />
-            <Route path={`/Setting/Analytics`} component={() => <div>Analytics</div>} />
-            <Route path={`/Setting/Ringtones`} component={() => <div>Ringtones</div>} />
+            <Route exact path={`/Setting`} component={Todo} />
+            <Route path={`/Setting/Analytics`} component={Analytics} />
+            <Route path={`/Setting/Ringtones`} component={Ringtones} />
           </FadeSwitch>
         </StyleWrapper.Main>
 
@@ -54,4 +59,30 @@ function Setting({ state, timeout, handleClose }) {
   );
 }
 
-export default memo(Setting);
+function SettingWrapper() {
+  const history = useHistory();
+  const location = useLocation();
+  const routeMatched = /setting/.test(location.pathname.toLowerCase());
+  const [show, setShow] = useState(routeMatched);
+  const timeout = 150;
+
+  useEffect(() => {
+    setShow(routeMatched);
+  }, [location.pathname]);
+
+  const handleClose = useCallback(() => {
+    setShow(false);
+
+    setTimeout(() => {
+      history.push('/');
+    }, timeout);
+  }, []);
+
+  return (
+    <Transition in={show} timeout={timeout}>
+      {(state) => (show || routeMatched) && <Setting state={state} timeout={timeout} handleClose={handleClose} />}
+    </Transition>
+  );
+}
+
+export default memo(SettingWrapper);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import data from '../api/Data';
+import data from '../api/data';
 
 const App = React.createContext({});
 export const AppWrapper = (props) => {

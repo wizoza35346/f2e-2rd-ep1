@@ -1,26 +1,23 @@
 import { hot } from 'react-hot-loader';
-import React, { Suspense, useEffect, useState, memo, useCallback } from 'react';
+import React, { Suspense, lazy } from 'react';
+import { HashRouter as Router } from 'react-router-dom';
 
 import { AppWrapper } from './contexts/App';
 
-import { HashRouter as Router, useLocation, useHistory } from 'react-router-dom';
-import Primary from './components/Primary/';
-import Secondary from './components/Secondary';
-
-import Setting from './components/Setting/';
-
-import { Transition } from 'react-transition-group';
+const Primary = lazy(() => import('./components/Primary/'));
+const Secondary = lazy(() => import('./components/Secondary'));
+const Setting = lazy(() => import('./components/Setting/'));
 
 function App() {
   return (
-    <Suspense fallback={<div>Component is Loading...</div>}>
-      <AppWrapper>
+    <AppWrapper>
+      <Suspense fallback={<div>Component is Loading...</div>}>
         <Router>
           <Main />
-          <SettingWrapper />
+          <Setting />
         </Router>
-      </AppWrapper>
-    </Suspense>
+      </Suspense>
+    </AppWrapper>
   );
 }
 
@@ -32,31 +29,4 @@ function Main() {
     </main>
   );
 }
-
-function SettingWrapper() {
-  const history = useHistory();
-  const location = useLocation();
-  const routeMatched = /setting/.test(location.pathname.toLowerCase());
-  const [show, setShow] = useState(routeMatched);
-  const timeout = 150;
-
-  useEffect(() => {
-    setShow(routeMatched);
-  }, [location.pathname]);
-
-  const handleClose = useCallback(() => {
-    setShow(false);
-
-    setTimeout(() => {
-      history.push('/');
-    }, timeout);
-  }, []);
-
-  return (
-    <Transition in={show} timeout={timeout}>
-      {(state) => (show || routeMatched) && <Setting state={state} timeout={timeout} handleClose={handleClose} />}
-    </Transition>
-  );
-}
-
 export default hot(module)(App);
