@@ -10,7 +10,7 @@ const StyledWrapper = styled.div`
 `;
 
 StyledWrapper.Header = styled.div.attrs((props) => ({
-  className: `py-2 px-4 flex font-bold text-white uppercase ${props.isCollapse ? 'cursor-pointer' : 'cursor-default'}`,
+  className: `py-2 px-4 flex font-bold text-white uppercase ${props.collapse ? 'cursor-pointer' : 'cursor-default'}`,
 }))`
   background-color: #ffffff33;
 
@@ -23,18 +23,12 @@ StyledWrapper.Header = styled.div.attrs((props) => ({
 StyledWrapper.Body = styled.div.attrs({
   className: `flex flex-wrap pt-4 overflow-hidden`,
 })`
-${({ state, collapse }) => {
-  console.log(state);
-  return (
+  ${({ state, collapse }) =>
     collapse &&
-    `
+    css`
       transition: max-height ${timeout}ms ease-in-out;
       max-height: ${/enter/.test(state) ? 0 : 1000}px;
-    `
-  );
-}}
-  /* transform-origin: top;
-  transform: ${({ state }) => (state !== 'entered' ? 'scaleY(0)' : 'scaleY(100%)')}; */
+    `}
 `;
 
 function Collapse({ collapse, title, children }) {
@@ -56,7 +50,7 @@ function Collapse({ collapse, title, children }) {
 
   return (
     <StyledWrapper>
-      <StyledWrapper.Header isCollapse={collapse} onClick={handleCollapse}>
+      <StyledWrapper.Header collapse={collapse} onClick={handleCollapse}>
         <h3>{title}</h3>
         <div className="ml-auto">
           <ControlCollapse />
