@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import tw from 'twin.macro';
 import { Transition } from 'react-transition-group';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 const timeout = 300;
 
@@ -21,13 +22,15 @@ StyledWrapper.Header = styled.div.attrs((props) => ({
   }
 `;
 StyledWrapper.Body = styled.div.attrs({
-  className: `flex flex-wrap pt-4 overflow-hidden`,
+  className: `pt-4 overflow-hidden`,
 })`
   ${({ state, collapse }) =>
     collapse &&
     css`
+      width: calc(100% + 1rem);
+      padding-right: 1rem;
       transition: max-height ${timeout}ms ease-in-out;
-      max-height: ${/enter/.test(state) ? 0 : 1000}px;
+      max-height: ${/enter/.test(state) ? 0 : 250}px;
     `}
 `;
 
@@ -60,7 +63,9 @@ function Collapse({ collapse, title, children }) {
       <Transition in={state && collapse} timeout={timeout}>
         {(state) => (
           <StyledWrapper.Body state={state} collapse={collapse}>
-            {children}
+            <Scrollbars autoHeight style={{ width: 'calc(100% + 1rem)' }}>
+              <div className="flex flex-wrap pr-4">{children}</div>
+            </Scrollbars>
           </StyledWrapper.Body>
         )}
       </Transition>
