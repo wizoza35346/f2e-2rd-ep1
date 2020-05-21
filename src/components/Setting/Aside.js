@@ -57,7 +57,8 @@ StyleWrapper.Play = styled.span.attrs({
       background-color: white;
       width: 50%;
       height: 50%;
-      ${tw`absolute rounded-full`}
+      transform: translate(-50%, -50%);
+      ${tw`absolute top-1/2 left-1/2 rounded-full`}
     }
   }
 `;
