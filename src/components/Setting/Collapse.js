@@ -10,10 +10,10 @@ const StyledWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-StyledWrapper.Header = styled.div.attrs((props) => ({
+StyledWrapper.Header = styled.div.attrs(props => ({
   className: `py-2 px-4 flex font-bold text-white uppercase ${props.collapse ? 'cursor-pointer' : 'cursor-default'}`,
 }))`
-  background-color: #ffffff33;
+  background-color: rgba(255, 255, 255, 0.3);
 
   * {
     line-height: 28px;
@@ -61,7 +61,7 @@ function Collapse({ collapse, title, children }) {
       </StyledWrapper.Header>
 
       <Transition in={state && collapse} timeout={timeout}>
-        {(state) => (
+        {state => (
           <StyledWrapper.Body state={state} collapse={collapse}>
             <Scrollbars autoHeight style={{ width: 'calc(100% + 1rem)' }}>
               <div className="flex flex-wrap pr-4">{children}</div>
