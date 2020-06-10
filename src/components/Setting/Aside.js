@@ -17,7 +17,7 @@ StyleWrapper.NavItem = styled(Link).attrs({
 })`
   margin-bottom: 42px;
   line-height: 42px;
-  color: ${(props) => (props.active ? props.activeColor : '#FFFFFF33')};
+  color: ${props => (props.active ? props.activeColor : 'rgba(255, 255, 255, 0.3)')};
 `;
 
 StyleWrapper.Footer = styled.div.attrs({
@@ -34,30 +34,30 @@ StyleWrapper.Footer = styled.div.attrs({
 `;
 
 StyleWrapper.Play = styled.span.attrs({
-  className: 'absolute top-0 flex justify-center items-center text-primary bg-secondary rounded-full',
+  className: 'absolute top-0 left-1/2 flex justify-center items-center text-primary bg-secondary rounded-full',
 })`
   width: 116px;
   height: 116px;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 
   > span {
     font-size: 104px;
     width: 104px;
     height: 104px;
-    color: ${(props) => props.color};
-    border-color: ${(props) => props.color};
+    color: ${props => props.color};
+    border-color: ${props => props.color};
     ${tw`relative select-none cursor-pointer border-2 rounded-full flex justify-center items-center`}
     &:active {
       transform: scale(0.95);
     }
     &:after {
       content: '';
-      display: block;
       z-index: -1;
       background-color: white;
       width: 50%;
       height: 50%;
-      ${tw`absolute rounded-full`}
+      transform: translate(-50%, -50%);
+      ${tw`block absolute top-1/2 left-1/2 rounded-full`}
     }
   }
 `;
@@ -66,7 +66,7 @@ function Aside({ currentCountDown, handleTomatoState }) {
   return (
     <StyleWrapper>
       <nav>
-        {routes.map((r) => (
+        {routes.map(r => (
           <StyleWrapper.NavItem key={r.pathName} to={r.pathName}>
             <span className="material-icons text-4xl mr-2">{r.icon}</span>
             <span className="align-top uppercase">{r?.title}</span>

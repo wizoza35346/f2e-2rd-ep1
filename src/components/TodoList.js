@@ -7,16 +7,12 @@ const StyleWrapper = styled.div``;
 StyleWrapper.Item = styled.div.attrs({
   className: `flex text-secondary border-b border-secondary border-opacity-20 h-8 mb-2`,
 })`
-  ${({ light }) => {
-    console.log(light);
-    return (
-      light &&
-      css`
-        color: white;
-        border-color: #ffffff33;
-      `
-    );
-  }}
+  ${({ light }) =>
+    light &&
+    css`
+      color: white;
+      border-color: rgba(255, 255, 255, 0.3);
+    `}
 `;
 
 StyleWrapper.Title = styled.span.attrs({
@@ -35,13 +31,13 @@ function TodoList({ light, maxLength, todoList, currentCountDown, handleCurrentC
   return (
     <StyleWrapper>
       {todoList
-        .filter((s) => s.uuid !== currentCountDown.uuid)
+        .filter(s => s.uuid !== currentCountDown.uuid)
         .filter((_, index) => (maxLength ? index < maxLength : true))
-        .map((s) => (
+        .map(s => (
           <StyleWrapper.Item key={s.uuid} light={light}>
             <span className="material-icons select-none cursor-pointer w-6 h-6 mr-1">radio_button_unchecked</span>
             <StyleWrapper.Title>{s.title}</StyleWrapper.Title>
-            <StyleWrapper.Play className="material-icons" onClick={(e) => handleCurrentCountDownChanges(s, e)}>
+            <StyleWrapper.Play className="material-icons" onClick={e => handleCurrentCountDownChanges(s, e)}>
               play_circle_outline
             </StyleWrapper.Play>
           </StyleWrapper.Item>
